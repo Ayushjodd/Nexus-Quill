@@ -9,7 +9,7 @@ function Signup() {
   return (
     <>
       <div className="h-screen flex">
-        <div className="w-1/2 justify-items-center text-center ">
+        <div className="w-1/2 justify-items-center text-center">
           <div className=" border-gray-300 mx-72 mt-[30%] rounded-md p-10 border-[0.1px]">
             <div className="text-3xl font-bold">Create an account</div>
             <div className="text-gray-400">
@@ -45,12 +45,11 @@ function Signup() {
             </div>
           </div>
         </div>
-        <div className="w-1/2 bg-gray-200 justify-center items-center">
+        <div className="w-1/2 bg-blue-200 justify-center items-center">
           <div className="font-bold text-3xl mx-[20%] mt-[40%]">
-            "The customer service I received was exceptional. The support team
-            went above and beyond to address my concerns."
-            <div className="text-lg pt-3">Jules Winnfield</div>
-            <div className="text-gray-400 text-lg">CEO, Acme Inc</div>
+          A Platform where you can share your knowledge and discuss with others
+            <div className="text-lg pt-3">Nexus Quill</div>
+            <div className="text-gray-400 text-lg">Nexus Quill@2024</div>
           </div>
         </div>
       </div>

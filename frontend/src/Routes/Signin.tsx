@@ -39,12 +39,11 @@ function Signup() {
             </div>
           </div>
         </div>
-        <div className="w-1/2 bg-gray-200 justify-center items-center">
+        <div className="w-1/2 bg-blue-200 justify-center items-center">
           <div className="font-bold text-3xl mx-[20%] mt-[40%]">
-            "The customer service I received was exceptional. The support team
-            went above and beyond to address my concerns."
-            <div className="text-lg pt-3">Jules Winnfield</div>
-            <div className="text-gray-400 text-lg">CEO, Acme Inc</div>
+           A Platform where you can share your knowledge and discuss with others
+            <div className="text-lg pt-3">Nexus Quill</div>
+            <div className="text-gray-400 text-lg">Nexus Quill@2024</div>
           </div>
         </div>
       </div>
