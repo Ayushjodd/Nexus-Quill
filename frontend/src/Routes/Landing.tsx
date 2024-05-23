@@ -1,8 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import data from "../data";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
+
 export default function Landing() {
+  const rudratwitterHandler = () => {
+    window.open("https://twitter.com/RudraSankha");
+  };
+  const rudraLinkedInHandler = () => {
+    window.open(
+      "https://www.linkedin.com/in/rudra-sankha-sinhamahapatra-6311aa1bb/"
+    );
+  };
+  const ayushTwitterHandler = () => {
+    window.open("https://x.com/AyushIsCoding");
+  };
+  const ayushLinkedInHandler = () => {
+    window.open("https://www.linkedin.com/in/ayush-jangra-9992a82a3/");
+  };
   const github1Handler = () => {
     window.open("https://github.com/Rudra-Sankha-Sinhamahapatra/Nexus-Quill");
   };
@@ -18,13 +33,13 @@ export default function Landing() {
     <>
       <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
       <div className="flex ml-[37%]">
-        <h1 className=" select-none pt-3 text-4xl text-gray-200 hover:pt-1 transition-all text-center hover:text-[#402094]">
+        <h1 className="select-none pt-3 text-4xl text-gray-200 hover:pt-1 transition-all text-center hover:text-[#402094]">
           Discover and Share Your Stories
         </h1>
-        <div className="flex ">
+        <div className="flex">
           <button
             onClick={onClickHandler}
-            className=" hover:bg-gray-200 transition-all hover:text-[#402094] text-white p-3 mt-3 bg-[#402094] ml-96 border border-gray-400 rounded-full"
+            className="hover:bg-gray-200 transition-all hover:text-[#402094] text-white p-3 mt-3 bg-[#402094] ml-96 border border-gray-400 rounded-full"
           >
             JOIN NOW !
           </button>
@@ -41,22 +56,22 @@ export default function Landing() {
       </h3>
 
       <div className="text-center text-green-500 text-xl pt-[6%]">
-        <div className=" m-10 p-7 text-3xl text-pretty justify-items-center">
+        <div className="m-10 p-7 text-3xl text-pretty justify-items-center">
           <div>
             {data && data.length > 0 ? (
               data.map((dataItem) => (
-                <div>
+                <div key={dataItem.id}>
                   <div
                     onClick={() => handleSingleSelection(dataItem.id)}
                     className="title pt-5 pb-5"
                   >
                     <h3>{dataItem.question}</h3>
-                    <button className=" bg-[#402094] text-white text-2xl rounded-full p-2 px-4 hover:bg-white hover:text-[#402094] transition-all">
+                    <button className="bg-[#402094] text-white text-2xl rounded-full p-2 px-4 hover:bg-white hover:text-[#402094] transition-all">
                       +
                     </button>
                   </div>
                   {selected === dataItem.id ? (
-                    <div className=" text-md text-white">{dataItem.answer}</div>
+                    <div className="text-md text-white">{dataItem.answer}</div>
                   ) : null}
                 </div>
               ))
@@ -66,9 +81,39 @@ export default function Landing() {
           </div>
         </div>
       </div>
-      <div className="text-end text-white text-xl">
-        Made in colabraration by :<div className="">Ayush</div>
-        <div className="">Rudra</div>
+
+      <div className="text-center mt-10 text-gray-200">
+        <div>
+          <div>
+            Made in colabaration by
+            <div>
+              Rudra{" "}
+              <span>
+                <FaTwitter
+                  onClick={rudratwitterHandler}
+                  className="inline-block mr-2"
+                />
+                <FaLinkedin
+                  onClick={rudraLinkedInHandler}
+                  className="inline-block mr-2"
+                />
+              </span>
+            </div>
+            <div>
+              Ayush
+              <span>
+                <FaTwitter
+                  onClick={ayushTwitterHandler}
+                  className="inline-block mr-2"
+                />
+                <FaLinkedin
+                  onClick={ayushLinkedInHandler}
+                  className="inline-block mr-2"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
