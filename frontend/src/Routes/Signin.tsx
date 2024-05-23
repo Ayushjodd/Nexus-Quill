@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 
 function Signin() {
@@ -45,7 +44,8 @@ function Signin() {
         <div className="flex justify-center items-center w-full md:w-1/2 bg-blue-200 p-4 md:p-0">
           <div className="text-center mx-[20%] md:mx-0 md:w-[80%] lg:w-[60%]">
             <div className="font-bold text-3xl">
-              A Platform where you can share your knowledge and discuss with others
+              A Platform where you can share your knowledge and discuss with
+              others
             </div>
             <div className="text-lg pt-3">Nexus Quill</div>
             <div className="text-gray-400 text-lg">Nexus Quill @2024</div>
