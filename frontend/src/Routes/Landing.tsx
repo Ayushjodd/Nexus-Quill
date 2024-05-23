@@ -4,6 +4,9 @@ import data from "../data";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export default function Landing() {
+  const github1Handler = () => {
+    window.open("https://github.com/Rudra-Sankha-Sinhamahapatra/Nexus-Quill");
+  };
   const rudratwitterHandler = () => {
     window.open("https://twitter.com/RudraSankha");
   };
@@ -18,11 +21,8 @@ export default function Landing() {
   const ayushLinkedInHandler = () => {
     window.open("https://www.linkedin.com/in/ayush-jangra-9992a82a3/");
   };
-  const github1Handler = () => {
-    window.open("https://github.com/Rudra-Sankha-Sinhamahapatra/Nexus-Quill");
-  };
   const [selected, setSelected] = useState(null);
-  function handleSingleSelection(getCurrentId: any) {
+  function handleSingleSelection(getCurrentId:any) {
     setSelected(getCurrentId === selected ? null : getCurrentId);
   }
   const route = useNavigate();
@@ -31,17 +31,22 @@ export default function Landing() {
   };
   return (
     <>
-      <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
-      <div className="flex ml-[37%]">
-        <h1 className="select-none pt-3 text-4xl text-gray-200 hover:pt-1 transition-all text-center hover:text-[#402094]">
-          Discover and Share Your Stories
-        </h1>
-        <div className="flex">
+      <div className="fixed inset-0 -z-10 min-h-screen w-full bg-[radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
+      <div className="flex flex-col lg:flex-row justify-center items-center text-center lg:text-left">
+        <div>
+          <h1 className="select-none pt-3 text-4xl text-gray-200 hover:pt-1 transition-all hover:text-[#402094]">
+            Discover and Share Your Stories
+          </h1>
+          <h3 className="text-gray-200 mt-3 text-lg">
+            Join a community of writers, readers, and thinkers
+          </h3>
+        </div>
+        <div className="flex mt-5 lg:mt-0 lg:ml-10">
           <button
             onClick={onClickHandler}
-            className="hover:bg-gray-200 transition-all hover:text-[#402094] text-white p-3 mt-3 bg-[#402094] ml-96 border border-gray-400 rounded-full"
+            className="hover:bg-gray-200 transition-all hover:text-[#402094] text-white p-3 mt-3 bg-[#402094] border border-gray-400 rounded-full"
           >
-            JOIN NOW !
+            JOIN NOW!
           </button>
           <span
             onClick={github1Handler}
@@ -51,19 +56,16 @@ export default function Landing() {
           </span>
         </div>
       </div>
-      <h3 className="text-gray-200 text-center mt-3 text-lg">
-        Join a community of writers, readers, and thinkers
-      </h3>
 
-      <div className="text-center text-green-500 text-xl pt-[6%]">
-        <div className="m-10 p-7 text-3xl text-pretty justify-items-center">
+      <div className="text-center text-green-500 text-xl pt-10 lg:pt-[6%]">
+        <div className="m-5 lg:m-10 p-7 text-3xl text-pretty justify-items-center">
           <div>
             {data && data.length > 0 ? (
               data.map((dataItem) => (
                 <div key={dataItem.id}>
                   <div
                     onClick={() => handleSingleSelection(dataItem.id)}
-                    className="title pt-5 pb-5"
+                    className="title pt-5 pb-5 cursor-pointer"
                   >
                     <h3>{dataItem.question}</h3>
                     <button className="bg-[#402094] text-white text-2xl rounded-full p-2 px-4 hover:bg-white hover:text-[#402094] transition-all">
@@ -81,7 +83,6 @@ export default function Landing() {
           </div>
         </div>
       </div>
-
       <div className="text-center mt-10 text-gray-200">
         <div>
           <div>
