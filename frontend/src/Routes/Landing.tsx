@@ -64,11 +64,10 @@ export default function Landing() {
               data.map((dataItem) => (
                 <div key={dataItem.id}>
                   <div
-                    onClick={() => handleSingleSelection(dataItem.id)}
                     className="title pt-5 pb-5 cursor-pointer"
                   >
                     <h3>{dataItem.question}</h3>
-                    <button className="bg-[#402094] text-white text-2xl rounded-full p-2 px-4 hover:bg-white hover:text-[#402094] transition-all">
+                    <button className="bg-[#402094] text-white text-2xl rounded-full p-2 px-4 hover:bg-white hover:text-[#402094] transition-all"   onClick={() => handleSingleSelection(dataItem.id)}>
                       +
                     </button>
                   </div>
@@ -101,7 +100,7 @@ export default function Landing() {
               </span>
             </div>
             <div>
-              Ayush
+              Ayush{" "}
               <span>
                 <FaTwitter
                   onClick={ayushTwitterHandler}
