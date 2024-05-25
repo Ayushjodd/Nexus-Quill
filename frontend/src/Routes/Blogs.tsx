@@ -7,17 +7,18 @@ export default function Blogs() {
   const { loading, blogs } = useBlogs();
 
   if (loading) {
-    return <div>
-          <Appbar authorName="Rudra"/>
-          <div className="flex justify-center mt-3">
+    return (
       <div>
-      <BlogsSkeleton/>
-      <BlogsSkeleton/>
-      <BlogsSkeleton/>
-
+        <Appbar authorName="Rudra" />
+        <div className="flex justify-center mt-3">
+          <div>
+            <BlogsSkeleton />
+            <BlogsSkeleton />
+            <BlogsSkeleton />
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
+    );
   }
 
   // Handle case where blogs might still be undefined
@@ -42,10 +43,9 @@ export default function Blogs() {
         </span>
       </div>
       <div className="mx-96 mt-4">
-        <Appbar authorName="Rudra" />
         <div className="text-lg border-b p-2">For you</div>
-        <div className="border-black mt-8">
-          {blogs.map((blog: any) => (
+        {blogs.map((blog: any) => (
+          <div className="mt-8 border-b">
             <BlogCard
               key={blog.id}
               id={blog.id}
@@ -58,8 +58,8 @@ export default function Blogs() {
               }
               publishedDate={blog.publishedDate}
             />
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import { signupInput } from "@rudrasankha/common-nexusquill";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Backend_url } from "../config";
+import { Backend_url } from "../conf";
 import axios from "axios";
 
 function Signup() {
@@ -18,7 +18,7 @@ function Signup() {
         `${Backend_url}/api/v1/user/signup`,
         postInputs
       );
-      const jwt = res.data;
+      const jwt = res.data.jwt;
       localStorage.setItem("token", jwt);
       navigate("/blogs");
     } catch (e) {

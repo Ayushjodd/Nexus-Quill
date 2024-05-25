@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Backend_url } from "../config";
+import { Backend_url } from "../conf";
 import axios from "axios";
 import { useState } from "react";
 

@@ -1,6 +1,8 @@
 import { useBlog } from "../Hooks";
-import { useParams } from "react-router-dom";
-import { Appbar } from "../components/Appbar";
+import { Link, useParams } from "react-router-dom";
+import logo from "../assets/images/logo.png";
+import { TfiWrite } from "react-icons/tfi";
+import { Avatar } from "../components/BlogCard";
 function Blog() {
   const { id } = useParams();
   const { loading, blog } = useBlog({
@@ -15,14 +17,29 @@ function Blog() {
   }
   return (
     <>
-      <div>
-        <Appbar authorName={blog.author.name} />
+      <div className="flex justify-between  px-10 shadow-md">
+        <img src={logo} className="h-20 w-20 m-2 " />
+        <div className="flex text-gray-600 text-xl mt-5">
+          <Link to={"/publish"}>
+            <div className="flex text-gray-600 text-2xl ">
+              <span className="flex p-1 cursor-pointer mt-2">
+                <TfiWrite />
+                <span className="pl-2 ">Write</span>
+              </span>
+            </div>
+          </Link>
+          <span className="pl-7">
+            <Avatar name="User" />
+          </span>
+        </div>
       </div>
-      <div>
-        <div className="flex flex-col items-center justify-center mt-8">
-        <div className="py-4">{blog.title}</div>
-        <div>{blog.content===""?"description null":blog.content}</div>
-        <div className="py-4">{blog.id}</div>
+      <div className=" mt-16 text-center mx-[20%]">
+        <div>
+          <div className="text-5xl font-bold">{blog.title}</div>
+          <div className="pt-5 text-lg font-medium ">
+            {blog.content === "" ? "description null" : blog.content}
+          </div>
+          <div>{blog.id}</div>
         </div>
       </div>
     </>
