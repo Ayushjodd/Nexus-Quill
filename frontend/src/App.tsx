@@ -3,6 +3,7 @@ import Signup from "./Routes/Signup";
 import Signin from "./Routes/Signin";
 import Blog from "./Routes/Blog";
 import Landing from "./Routes/Landing";
+import Blogs from "./Routes/Blogs";
 export default function App() {
   return (
     <>
@@ -12,6 +13,8 @@ export default function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/" element={<Landing />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/test" element={<Blog />} />
         </Routes>
       </BrowserRouter>
     </>

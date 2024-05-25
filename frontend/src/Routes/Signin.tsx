@@ -1,7 +1,12 @@
-
+import { signinInput } from "@rudrasankha/common-nexusquill";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Signin() {
+  const [postInputs, setPostInputs] = useState<signinInput>({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
   const handleSignupClick = () => {
     navigate("/signup");
@@ -23,12 +28,24 @@ function Signin() {
             </div>
             <div className="font-bold pt-5">Email</div>
             <input
+              onChange={(e) => {
+                setPostInputs({
+                  ...postInputs,
+                  email: e.target.value,
+                });
+              }}
               type="text"
               placeholder="Enter your email"
               className="border border-gray-400 rounded-md p-1 px-4 w-full"
             />
             <div className="font-bold pt-5">Password</div>
             <input
+              onChange={(e) => {
+                setPostInputs({
+                  ...postInputs,
+                  password: e.target.value,
+                });
+              }}
               type="password"
               placeholder="example@123"
               className="border border-gray-400 p-1 rounded-md px-4 w-full"
@@ -43,7 +60,8 @@ function Signin() {
         <div className="flex justify-center items-center w-full md:w-1/2 bg-blue-200 p-4 md:p-0">
           <div className="text-center mx-[20%] md:mx-0 md:w-[80%] lg:w-[60%]">
             <div className="font-bold text-3xl">
-              A Platform where you can share your knowledge and discuss with others
+              A Platform where you can share your knowledge and discuss with
+              others
             </div>
             <div className="text-lg pt-3">Nexus Quill</div>
             <div className="text-gray-400 text-lg">Nexus Quill @2024</div>
