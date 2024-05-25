@@ -93,7 +93,7 @@ Ensure you have configured your Cloudflare account and environment variables pro
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [MIT](LICENSE) file for details.
 ```
 
 It includes instructions for building the frontend and deploying to Cloudflare, enhancing the clarity and completeness of the setup and deployment process for your project. Adjust paths and commands as necessary based on your specific project structure and deployment requirements.
