@@ -1,19 +1,59 @@
 import { Appbar } from "../components/Appbar";
 import axios from "axios";
 import { Backend_url } from "../conf";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextEditor from "../components/TextEditor";
 import { useNavigate } from "react-router-dom";
+import { useBlogs } from "../Hooks";
+import { BlogsSkeleton } from "../components/BlogsSkeleton";
 
 export default function Publish() {
+  const { loading } = useBlogs();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
 
+  const [userData, setUserData] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const response = await axios.get(`${Backend_url}/api/v1/user/me`, {
+            headers: {
+              Authorization: token,
+            },
+          });
+          setUserData(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div>
+        <Appbar authorName={userData ? userData.name : "Loading..."} />
+        <div className="flex justify-center mt-3">
+          <div>
+            <BlogsSkeleton />
+            <BlogsSkeleton />
+            <BlogsSkeleton />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div>
-        <Appbar authorName="Rudra" />
+        <Appbar authorName={userData ? userData.name : "User"} />
         <div className="flex justify-center w-full">
           <div className="max-w-screen-lg w-full mt-4">
             <input

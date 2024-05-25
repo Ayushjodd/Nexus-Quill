@@ -1,15 +1,38 @@
 import { Appbar } from "../components/Appbar";
-import { Avatar, BlogCard } from "../components/BlogCard";
+import { BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../Hooks";
-import logo from "../assets/images/logo.png";
 import { BlogsSkeleton } from "../components/BlogsSkeleton";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Backend_url } from "../conf";
+
 export default function Blogs() {
   const { loading, blogs } = useBlogs();
+  const [userData, setUserData] = useState<any>(null);
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const response = await axios.get(`${Backend_url}/api/v1/user/me`, {
+            headers: {
+              Authorization: token,
+            },
+          });
+          setUserData(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
   if (loading) {
     return (
       <div>
-        <Appbar authorName="Rudra" />
+        <Appbar authorName={userData ? userData.name : "Loading..."} />
         <div className="flex justify-center mt-3">
           <div>
             <BlogsSkeleton />
@@ -21,33 +44,23 @@ export default function Blogs() {
     );
   }
 
-  // Handle case where blogs might still be undefined
   if (!blogs || blogs.length === 0) {
-    return <div>No blogs found.</div>; // Handle empty state gracefully
+    return (
+      <div>
+        <Appbar authorName={userData ? userData.name : "User"} />
+        <div>No blogs found.</div>
+      </div>
+    );
   }
 
   return (
-    <>
-      <div className="flex justify-between shadow-md">
-        <div className="pl-10 py-3">
-          <img
-            alt="logo image"
-            className="pl-2"
-            src={logo}
-            width={70}
-            height={70}
-          />
-        </div>
-        <span className="text-lg p-4">
-          <Avatar name="Ayush" />
-        </span>
-      </div>
+    <div>
+      <Appbar authorName={userData ? userData.name : "User"} />
       <div className="mx-96 mt-4">
         <div className="text-lg border-b p-2">For you</div>
         {blogs.map((blog: any) => (
-          <div className="mt-8 border-b">
+          <div className="mt-8 border-b" key={blog.id}>
             <BlogCard
-              key={blog.id}
               id={blog.id}
               authorName={blog.author.name || "Anonymous"}
               title={blog.title}
@@ -61,6 +74,6 @@ export default function Blogs() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

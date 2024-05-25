@@ -3,7 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { TfiWrite } from "react-icons/tfi";
 import { Avatar } from "../components/BlogCard";
-function Blog() {
+import { BlogsSkeleton } from "../components/BlogsSkeleton";
+export default function Blog() {
   const { id } = useParams();
   const { loading, blog } = useBlog({
     id: id || "",
@@ -11,7 +12,13 @@ function Blog() {
   if (loading || !blog) {
     return (
       <div>
-        <h1>loading</h1>
+        <div className="flex justify-center mt-3">
+          <div>
+            <BlogsSkeleton />
+            <BlogsSkeleton />
+            <BlogsSkeleton />
+          </div>
+        </div>
       </div>
     );
   }
@@ -46,4 +53,3 @@ function Blog() {
   );
 }
 
-export default Blog;

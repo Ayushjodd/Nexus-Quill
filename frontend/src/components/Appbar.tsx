@@ -1,20 +1,25 @@
-import React from "react";
+import React from 'react'
 import { Avatar } from "./BlogCard";
 import { Link } from "react-router-dom";
-import logo from "../assets/images/logo.png";
+import logo from '../assets/images/logo.png'
 
 interface AppbarProps {
   authorName: string;
 }
 
 export const Appbar: React.FC<AppbarProps> = ({ authorName }) => {
+ 
   return (
     <div className="border-b flex justify-between px-10 py-4">
       <div className="flex items-center">
         <Link to={"/blogs"}>
-          <img src={logo} alt="Logo" className="h-10 w-10 mr-2" />
+          <img
+            src={logo}
+            alt="Logo"
+            className="h-10 w-10 mr-2"
+          />
         </Link>
-        <span>Post Own Blogs ,{authorName}</span>
+        <span>Post Own Blogs, {authorName}</span>
       </div>
       <div className="flex items-center">
         <Link to={"/publish"}>
@@ -27,7 +32,9 @@ export const Appbar: React.FC<AppbarProps> = ({ authorName }) => {
             Home
           </button>
         </Link>
+     
         <Avatar name={authorName} />
+
       </div>
     </div>
   );
