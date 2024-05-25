@@ -18,7 +18,6 @@ function Signin() {
     try {
       const res = await axios.post(
         `${Backend_url}/api/v1/user/signin`,
-
         postInputs
       );
       const jwt = res.data.jwt;
