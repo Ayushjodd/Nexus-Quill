@@ -119,3 +119,57 @@ userRouter.post("/signin", async (c) => {
       });
   }
 });
+
+
+
+userRouter.get("/me", async (c) => {
+    const jwt = c.req.header("Authorization");
+  
+    if (!jwt) {
+      c.status(401);
+      return c.json({
+        message: "Authorization token missing",
+      });
+    }
+  
+    try {
+      const decodedToken: any = await verify(jwt, c.env.JWT_SECRET);
+  
+      if (!decodedToken || !decodedToken.id) {
+        c.status(403);
+        return c.json({
+          message: "Invalid or expired token",
+        });
+      }
+  
+      const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+      }).$extends(withAccelerate());
+  
+      const userId = decodedToken.id.toString();
+  
+      const user = await prisma.user.findUnique({
+        where: {
+          id: userId,
+        },
+        select: {
+          name: true,
+        },
+      });
+  
+      if (!user) {
+        c.status(404);
+        return c.json({
+          message: "User not found",
+        });
+      }
+  
+      return c.json(user);
+    } catch (error) {
+      console.error("Error retrieving user data:", error);
+      c.status(500);
+      return c.json({
+        message: "Error retrieving user data",
+      });
+    }
+  });
