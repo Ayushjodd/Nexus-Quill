@@ -1,4 +1,3 @@
-import React from "react";
 import { Avatar, BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../Hooks";
 export default function Blogs() {

@@ -1,6 +1,8 @@
 import { signinInput } from "@rudrasankha/common-nexusquill";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Backend_url } from "../config";
+import axios from "axios";
 
 function Signin() {
   const [postInputs, setPostInputs] = useState<signinInput>({
@@ -11,6 +13,22 @@ function Signin() {
   const handleSignupClick = () => {
     navigate("/signup");
   };
+
+  async function sendReq() {
+    try {
+      const res = await axios.post(
+        `${Backend_url}/api/v1/user/signin`,
+        
+        postInputs
+        
+      );
+      const jwt = res.data.jwt;
+      localStorage.setItem("token", jwt);
+      navigate("/blogs");
+    } catch (e) {
+      alert("error occurred");
+    }
+  }
   return (
     <>
       <div className="h-screen flex flex-col md:flex-row">
@@ -51,7 +69,9 @@ function Signin() {
               className="border border-gray-400 p-1 rounded-md px-4 w-full"
             />
             <div className="pt-3">
-              <button className="bg-sky-400 rounded-full px-4 py-1 mt-4 text-white hover:bg-sky-500 border-gray-600 border-[0.5px] w-full">
+              <button 
+              onClick={sendReq}
+              className="bg-sky-400 rounded-full px-4 py-1 mt-4 text-white hover:bg-sky-500 border-gray-600 border-[0.5px] w-full">
                 Log In
               </button>
             </div>

@@ -20,7 +20,7 @@ export const useBlog = ({ id }: { id: string }) => {
     axios
       .get(`${Backend_url}/api/v1/blog/${id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -43,7 +43,7 @@ export const useBlogs = () => {
     axios
       .get(`${Backend_url}/api/v1/blog/bulk`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
