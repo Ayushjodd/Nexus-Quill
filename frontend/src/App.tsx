@@ -4,6 +4,7 @@ import Signin from "./Routes/Signin";
 import Blog from "./Routes/Blog";
 import Landing from "./Routes/Landing";
 import Blogs from "./Routes/Blogs";
+import Publish from './Routes/Publish'
 export default function App() {
   return (
     <>
@@ -14,7 +15,7 @@ export default function App() {
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/" element={<Landing />} />
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/test" element={<Blog />} />
+          <Route path="/publish" element={<Publish/>} />
         </Routes>
       </BrowserRouter>
     </>

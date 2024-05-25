@@ -19,12 +19,11 @@ function Blog() {
         <Appbar authorName={blog.author.name} />
       </div>
       <div>
-        <input type="text" placeholder="Title" className="text-3xl mt-5" />
-        <input
-          type="text"
-          placeholder="Tell your story..."
-          className="text-xl"
-        ></input>
+        <div className="flex flex-col items-center justify-center mt-8">
+        <div className="py-4">{blog.title}</div>
+        <div>{blog.content===""?"description null":blog.content}</div>
+        <div className="py-4">{blog.id}</div>
+        </div>
       </div>
     </>
   );

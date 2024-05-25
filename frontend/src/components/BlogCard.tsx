@@ -16,7 +16,7 @@ export const BlogCard = ({
 }: BlogCardProps) => {
   return (
     <Link to={`/blog/${id}`}>
-      <div className="">
+      <div className="border-black">
         <div>
           <Avatar name={authorName} />
           <span className="pl-2">{authorName}</span>
@@ -34,8 +34,10 @@ export const BlogCard = ({
 
 export function Avatar({ name }: { name: string }) {
   return (
+    <>
     <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-200 rounded-full ">
       <span className="font-medium text-gray-600 ">{name[0]} </span>
     </div>
+    </>
   );
 }
