@@ -2,11 +2,22 @@ import { Appbar } from "../components/Appbar";
 import { Avatar, BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../Hooks";
 import logo from "../assets/images/logo.png";
+import { BlogsSkeleton } from "../components/BlogsSkeleton";
 export default function Blogs() {
   const { loading, blogs } = useBlogs();
 
   if (loading) {
-    return <div>Loading...</div>; // Add shimmer or loading state UI
+    return <div>
+          <Appbar authorName="Rudra"/>
+          <div className="flex justify-center mt-3">
+      <div>
+      <BlogsSkeleton/>
+      <BlogsSkeleton/>
+      <BlogsSkeleton/>
+
+      </div>
+    </div>
+    </div>
   }
 
   // Handle case where blogs might still be undefined
@@ -31,7 +42,7 @@ export default function Blogs() {
         </span>
       </div>
       <div className="mx-96 mt-4">
-        <Appbar authorName="User" />
+        <Appbar authorName="Rudra" />
         <div className="text-lg border-b p-2">For you</div>
         <div className="border-black mt-8">
           {blogs.map((blog: any) => (
