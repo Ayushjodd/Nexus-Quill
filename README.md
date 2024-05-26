@@ -26,7 +26,7 @@ To run this project locally, follow these steps:
 
 1. Clone this repository or download the root folder.
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Rudra-Sankha-Sinhamahapatra/Nexus-Quill
    ```
 
 2. Install dependencies for the frontend.
@@ -75,7 +75,7 @@ To build and deploy your project on Cloudflare, follow these steps:
    npm run build
    ```
 
-2. Deploy to Cloudflare using Cloudflare Workers or other appropriate deployment mechanisms.
+2. Deploy to Cloudflare using Cloudflare Workers or other appropriate deployment mechanisms(backend)
    ```bash
    # Command for login in Cloudflare Workers
    npx wrangler login
@@ -83,7 +83,7 @@ To build and deploy your project on Cloudflare, follow these steps:
 
   ```bash
    # Command for deploying with Cloudflare Workers
-   npx wrangler deploy
+   npm run deploy
    ```
     
 
