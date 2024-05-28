@@ -29,6 +29,7 @@ export default function Blogs() {
 
     fetchUserData();
   }, []);
+
   if (loading) {
     return (
       <div>
@@ -48,7 +49,7 @@ export default function Blogs() {
     return (
       <div>
         <Appbar authorName={userData ? userData.name : "User"} />
-        <div>No blogs found.</div>
+        <div className="text-center mt-8 text-lg">No blogs found.</div>
       </div>
     );
   }
@@ -56,8 +57,8 @@ export default function Blogs() {
   return (
     <div>
       <Appbar authorName={userData ? userData.name : "User"} />
-      <div className="mx-96 mt-4">
-        <div className="text-lg border-b p-2">For you</div>
+      <div className="max-w-screen-lg mx-auto mt-4 px-4 sm:px-6 md:px-8">
+        <div className="text-lg border-b pb-2">For you</div>
         {blogs.map((blog: any) => (
           <div className="mt-8 border-b" key={blog.id}>
             <BlogCard
