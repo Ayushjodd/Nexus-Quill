@@ -19,7 +19,7 @@ function Signup() {
         postInputs
       );
       const jwt = res.data.jwt;
-      localStorage.setItem("token", jwt);
+      localStorage.setItem("Sign-Up-Token", jwt);
       navigate("/blogs");
     } catch (e) {
       alert("error occurred");

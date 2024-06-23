@@ -15,14 +15,21 @@ export default function Publish() {
 
   const [userData, setUserData] = useState<any>(null);
 
+  let memory = null
+  if (localStorage.getItem("Sign-In-Token") !== null) {
+    memory = localStorage.getItem("Sign-In-Token")
+  } else {
+    memory = localStorage.getItem("Sign-Up-Token")
+  }
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = memory;
         if (token) {
           const response = await axios.get(`${Backend_url}/api/v1/user/me`, {
             headers: {
-              Authorization: token,
+              Authorization: memory,
             },
           });
           setUserData(response.data);
@@ -33,7 +40,11 @@ export default function Publish() {
     };
 
     fetchUserData();
-  }, []);
+  }, [memory]);
+
+  if (memory === null) {
+    return null
+  }
 
   if (loading) {
     return (
@@ -78,7 +89,7 @@ export default function Publish() {
                     },
                     {
                       headers: {
-                        Authorization: localStorage.getItem("token"),
+                        Authorization: `${memory}`,
                       },
                     }
                   );

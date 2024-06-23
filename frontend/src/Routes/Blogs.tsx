@@ -10,10 +10,17 @@ export default function Blogs() {
   const { loading, blogs } = useBlogs();
   const [userData, setUserData] = useState<any>(null);
 
+  let memory = null
+  if (localStorage.getItem("Sign-In-Token") !== null) {
+    memory = localStorage.getItem("Sign-In-Token")
+  } else {
+    memory = localStorage.getItem("Sign-Up-Token")
+  }
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = memory;
         if (token) {
           const response = await axios.get(`${Backend_url}/api/v1/user/me`, {
             headers: {
@@ -28,7 +35,7 @@ export default function Blogs() {
     };
 
     fetchUserData();
-  }, []);
+  }, [memory]);
 
   if (loading) {
     return (
