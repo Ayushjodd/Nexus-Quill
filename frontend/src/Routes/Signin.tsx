@@ -21,7 +21,7 @@ function Signin() {
         postInputs
       );
       const jwt = res.data.jwt;
-      localStorage.setItem("token", jwt);
+      localStorage.setItem("Sign-In-Token", jwt);
       navigate("/blogs");
     } catch (e) {
       alert("error occurred");
