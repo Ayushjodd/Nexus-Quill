@@ -1,17 +1,48 @@
 import { useBlog } from "../Hooks";
-import { Link, useParams } from "react-router-dom";
-import logo from "../assets/images/logo.png";
-import { TfiWrite } from "react-icons/tfi";
-import { Avatar } from "../components/BlogCard";
+import { useParams } from "react-router-dom";
 import { BlogsSkeleton } from "../components/BlogsSkeleton";
+import { useEffect, useState } from "react";
+import { Backend_url } from "../conf";
+import axios from "axios";
+import { Appbar } from "../components/Appbar";
 export default function Blog() {
+  const [userData, setUserData] = useState<any>(null);
   const { id } = useParams();
   const { loading, blog } = useBlog({
     id: id || "",
   });
+
+  let memory = null
+  if (localStorage.getItem("Sign-In-Token") !== null) {
+    memory = localStorage.getItem("Sign-In-Token")
+  } else {
+    memory = localStorage.getItem("Sign-Up-Token")
+  }
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = memory;
+        if (token) {
+          const response = await axios.get(`${Backend_url}/api/v1/user/me`, {
+            headers: {
+              Authorization: token,
+            },
+          });
+          setUserData(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [memory]);
+
   if (loading || !blog) {
     return (
       <div>
+        <Appbar authorName={userData ? userData.name : "User"}/>
         <div className="flex justify-center mt-3">
           <div>
             <BlogsSkeleton />
@@ -24,22 +55,8 @@ export default function Blog() {
   }
   return (
     <>
-      <div className="flex justify-between  px-10 shadow-md">
-        <img src={logo} className="h-20 w-20 m-2 " />
-        <div className="flex text-gray-600 text-xl mt-5">
-          <Link to={"/publish"}>
-            <div className="flex text-gray-600 text-2xl ">
-              <span className="flex p-1 cursor-pointer mt-2">
-                <TfiWrite />
-                <span className="pl-2 ">Write</span>
-              </span>
-            </div>
-          </Link>
-          <span className="pl-7">
-            <Avatar name="User" />
-          </span>
-        </div>
-      </div>
+    <div> 
+      <Appbar authorName={userData ? userData.name : "User"} />
       <div className=" mt-16 text-center mx-[20%]">
         <div>
           <div className="text-5xl font-bold">{blog.title}</div>
@@ -48,6 +65,7 @@ export default function Blog() {
           </div>
           <div>{blog.id}</div>
         </div>
+      </div>
       </div>
     </>
   );

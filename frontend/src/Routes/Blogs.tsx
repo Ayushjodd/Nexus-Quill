@@ -78,6 +78,7 @@ export default function Blogs() {
                   : blog.content
               }
               publishedDate={blog.publishedDate}
+              publishedAt={blog.publishedAt}
             />
           </div>
         ))}

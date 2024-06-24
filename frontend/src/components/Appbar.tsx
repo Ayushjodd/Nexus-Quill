@@ -7,7 +7,7 @@ interface AppbarProps {
   authorName: string;
 }
 
-export const Appbar: React.FC<AppbarProps> = ({ authorName }) => {
+export const Appbar: React.FC<AppbarProps> = ({ authorName}) => {
  
   return (
     <div className="border-b flex justify-between px-10 py-4">

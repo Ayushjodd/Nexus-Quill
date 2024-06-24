@@ -5,6 +5,7 @@ interface BlogCardProps {
   content: string;
   publishedDate: string;
   id: number;
+  publishedAt:string;
 }
 
 export const BlogCard = ({
@@ -13,7 +14,12 @@ export const BlogCard = ({
   title,
   content,
   publishedDate,
+  publishedAt
 }: BlogCardProps) => {
+  const dateObj = new Date(publishedAt);
+  const formattedDate = dateObj.toLocaleDateString();
+  const formattedTime = dateObj.toLocaleTimeString();
+
   return (
     <Link to={`/blog/${id}`}>
       <div className="border-black">
@@ -23,10 +29,11 @@ export const BlogCard = ({
           <span className="text-gray-500"> {publishedDate}</span>
         </div>
         <div className="text-3xl mt-2 font-bold">{title}</div>
-        <div>{content.slice(0, 100) + "..."}</div>
+        <div className="mt-2">{content.slice(0, 100) + "..."}</div>
         <div className="my-6">{`${Math.ceil(
           content.length / 100
         )} minutes`}</div>
+        <div className="my-6">Published on {formattedDate} at {formattedTime} IST</div>
       </div>
     </Link>
   );
