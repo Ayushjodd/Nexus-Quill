@@ -64,6 +64,7 @@ blogRouter.post("/", async (c) => {
         title: title,
         content: content,
         authorId: authorId,
+        publishedAt:new Date()
       },
     });
     return c.json({
@@ -134,6 +135,7 @@ blogRouter.get("/bulk", async (c) => {
             name: true,
           },
         },
+        publishedAt:true
       },
     });
     return c.json(posts);
@@ -165,6 +167,7 @@ blogRouter.get("/:id", async (c) => {
             name: true,
           },
         },
+        publishedAt:true
       },
     });
 
